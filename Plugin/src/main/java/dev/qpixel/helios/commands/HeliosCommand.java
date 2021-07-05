@@ -1,7 +1,10 @@
-package dev.qpixel.plugins.helios.commands;
+package dev.qpixel.helios.commands;
 
-import dev.qpixel.plugins.helios.Helios;
+import dev.qpixel.helios.Helios;
+import net.kyori.adventure.text.Component;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.inventivetalent.pluginannotations.command.Command;
 import org.inventivetalent.pluginannotations.command.Permission;
 
@@ -16,7 +19,9 @@ public class HeliosCommand {
             description = "Checks the version and lists the plugins hooked into helios"
     )
     @Permission("helios.command.main")
-    public void helios(CommandSender sender) {
-
+    public void helios(Player player) {
+        player.sendMessage(plugin.heliosAPI.getVersion());
+        player.sendMessage(ChatColor.BLUE + "Test");
+        return;
     }
 }

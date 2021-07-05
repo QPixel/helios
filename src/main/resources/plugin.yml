@@ -1,0 +1,11 @@
+name: Helios
+version: ${project.version}
+main: dev.qpixel.plugins.helios.Helios
+api-version: 1.17
+author: QPixel
+description: Utility plugin used in all of my plugins
+website: https://qpixel.me
+
+commands:
+  helios:
+    aliases: []

@@ -1,4 +1,4 @@
-name: Helios
+name: HeliosCore
 version: ${project.version}
 main: dev.qpixel.helios.Helios
 api-version: 1.17

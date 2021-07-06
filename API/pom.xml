@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>API</artifactId>
-    <version>${helios.version}</version>
+    <version>${heliosapi.version}</version>
     <name>HeliosAPI</name>
     <description>The Actual api</description>
 

@@ -17,7 +17,8 @@
     <description>Utility plugin used in all of my plugins</description>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <helios.version>1.0.0-SNAPSHOT</helios.version>
+        <helioscore.version>1.0.1-SNAPSHOT</helioscore.version>
+        <heliosapi.version>1.0.5-SNAPSHOT</heliosapi.version>
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
     </properties>

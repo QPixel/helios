@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>helios</artifactId>
-    <version>${helios.version}</version>
+    <version>${helioscore.version}</version>
 
     <name>Helios</name>
 
@@ -22,7 +22,7 @@
     <url>https://qpixel.me</url>
 
     <build>
-        <finalName>helios_v${helios.version}</finalName>
+        <finalName>helios_v${helioscore.version}</finalName>
         <resources>
             <resource>
                 <directory>src/main/java</directory>
@@ -78,7 +78,7 @@
         <dependency>
             <groupId>dev.qpixel.helios</groupId>
             <artifactId>API</artifactId>
-            <version>${helios.version}</version>
+            <version>${heliosapi.version}</version>
         </dependency>
         <dependency>
             <groupId>io.papermc.paper</groupId>

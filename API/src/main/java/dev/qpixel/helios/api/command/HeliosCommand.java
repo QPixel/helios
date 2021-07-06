@@ -13,7 +13,7 @@ public class HeliosCommand {
     public HeliosCommand(HeliosPlugin plugin) {
         this.plugin = plugin;
         this.heliosAPI = plugin.getHeliosAPI();
-        this.sender = new MessageSender(this.heliosAPI);
+        this.sender = new MessageSender(this.plugin);
     }
 
     public Plugin getPlugin() {

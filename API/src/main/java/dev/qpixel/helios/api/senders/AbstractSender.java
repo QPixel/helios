@@ -1,31 +1,41 @@
 package dev.qpixel.helios.api.senders;
 
 import dev.qpixel.helios.api.HeliosAPI;
-
 import dev.qpixel.helios.api.HeliosPlugin;
 import dev.qpixel.helios.api.util.SenderHelper;
 import net.kyori.adventure.text.Component;
 import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.Plugin;
 
-public class MessageSender implements Sender {
+public final class AbstractSender implements Sender {
     private final HeliosPlugin plugin;
     private final HeliosAPI heliosAPI;
+    private final CommandSender sender;
+    private final boolean isConsole;
 
-    public MessageSender(HeliosPlugin plugin) {
+    public AbstractSender(HeliosPlugin plugin, CommandSender sender) {
         this.plugin = plugin;
         this.heliosAPI = plugin.getHeliosAPI();
+        this.isConsole = SenderHelper.isConsole(sender);
+        this.sender = sender;
     }
-
 
     @Override
     public HeliosPlugin getPlugin() {
-        return null;
+        return this.plugin;
     }
 
     @Override
     public HeliosAPI getAPI() {
-        return null;
+        return this.heliosAPI;
+    }
+
+    @Override
+    public void sendMessage(Component message) {
+        try {
+            this.sender.sendMessage(message);
+        } catch (NoClassDefFoundError e) {
+            this.getAPI().getAudience().sender(this.sender).sendMessage(message);
+        }
     }
 
     @Override
@@ -37,10 +47,8 @@ public class MessageSender implements Sender {
         }
     }
 
-    // Since we don't have sender we don't support using this option, TODO look into being able to get the sender property back
-    @Override public void sendMessage(Component message) {throw new UnsupportedOperationException();}
-
-    // Is console
-    // is unable to be gotten since sender is not known
-     @Override public boolean isConsole() {throw new UnsupportedOperationException();}
+    @Override
+    public boolean isConsole() {
+        return isConsole;
+    }
 }

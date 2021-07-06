@@ -1,6 +1,7 @@
 package dev.qpixel.helios.api;
 
 
+import dev.qpixel.helios.api.message.MessageCreation;
 import dev.qpixel.helios.api.util.PropertiesReader;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.plugin.Plugin;
@@ -26,25 +27,28 @@ public class HeliosAPI {
         }
         return adventure;
     }
-
+    public @NotNull BukkitAudiences getAudience() {
+        if (adventure == null) {
+            throw new IllegalStateException("Tried to access adventure while disabled");
+        }
+        return adventure;
+    }
     public void init(HeliosPlugin plugin) {
         this.plugin = plugin;
         if (plugin.getServer().getVersion().toLowerCase(Locale.ROOT).contains("spigot")) {
             Spigot = true;
             plugin.getLogger().info("plugin is running on spigot");
             adventure = BukkitAudiences.create(plugin);
-        } else {
-//            this.adventure = this.plugin.getServer()
-            plugin.getLogger().info("is this being ran instead");
         }
         registerPlugin(String.format("%s %s",plugin.getName(), plugin.getDescription().getVersion()));
         try {
             reader = new PropertiesReader("build-info.properties");
-            version = reader.getProperty("helios.version");
+            version = reader.getProperty("heliosapi.version");
         } catch (IOException e) {
             plugin.getLogger().warning("Unable to read internal properties");
             version = "1.0.0-SNAPSHOT-error";
         }
+
     }
     public void unload() {
         if (adventure != null) {
